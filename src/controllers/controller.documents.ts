@@ -57,7 +57,7 @@ export const updateDocument = async (req: Request, res: Response) => {
         const result = await collections.document_items.updateOne(query, { $set:  {content: updateDocument.updatedContent}});
 
         result
-            ? res.status(200).send(`Successfully updated items with key ${key}`)
+            ? res.status(200).send(`Successfully updated item with key ${key}`)
             : res.status(304).send(`item with key: ${key} not updated`);
     } catch (error) {
         console.error(error.message);
@@ -74,7 +74,7 @@ export const deleteDocument = async (req: Request, res: Response) => {
         const result = await collections.document_items.deleteOne(query);
 
         if (result && result.deletedCount) {
-            res.status(202).send(`Successfully removed  items with key ${key}`);
+            res.status(202).send(`Successfully removed  item with key ${key}`);
         } else if (!result) {
             res.status(400).send(`Failed to remove item with key ${key}`);
         } else if (!result.deletedCount) {

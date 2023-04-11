@@ -1,0 +1,161 @@
+{
+    "swagger": "2.0",
+    "info": {
+      "version": "1.0.0",
+      "title": "Document Service CRUD Operations Express Swagger App",
+      "description": "Demo Application for Node JS Express with Swagger API Documentation",
+      "license": {
+        "name": "ISC",
+        "url": "https://opensource.org/licenses/ISC"
+      }
+    },
+    "host": "localhost:3000",
+    "basePath": "/api/v1",
+    "tags": [
+      {
+        "name": "Documents",
+        "description": "APIs for Document Model"
+      }
+    ],
+    "schemes": [
+      "http"
+    ],
+    "consumes": [
+      "application/json"
+    ],
+    "produces": [
+      "application/json"
+    ],
+    "paths": {
+      "/documents": {
+        "post": {
+          "tags": [
+            "Documents"
+          ],
+          "description": "Create new Document",
+          "parameters": [
+            {
+                "name": "Document",
+                "in": "body",
+                "description": "Document that we want to create",
+                "schema": {
+                  "$ref": "#/definitions/Document"
+                }
+              }
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": "Successfully created a new document with key_variable"
+            }
+          }
+        },
+        "get": {
+          "tags": [
+            "Documents"
+          ],
+          "summary": "Get All Documents",
+          "responses": {
+            "200": {
+              "description": "OK",
+              "schema": {
+                "$ref": "#/definitions/Documents"
+              }
+            }
+          }
+        }
+      },
+      "/documents/{key}": {
+        "parameters": [
+          {
+            "name": "key",
+            "in": "path",
+            "required": true,
+            "description": "key of document that we want to perform the operation",
+            "type": "string"
+          }
+        ],
+        "get": {
+          "tags": [
+            "Documents"
+          ],
+          "summary": "Get Document with given key",
+          "responses": {
+            "200": {
+              "description": "Document is found",
+              "schema": {
+                "$ref": "#/definitions/Document"
+              }
+            }
+          }
+        },
+        "delete": {
+          "summary": "Delete Employee with given key",
+          "tags": [
+            "Documents"
+          ],
+          "responses": {
+            "202": {
+                "description": "Successfully deleted a new document with key_variable"
+            }
+          }
+        },
+        "put": {
+          "summary": "Update Document with given key",
+          "tags": [
+            "Documents"
+          ],
+          "parameters": [
+            {
+                "name": "updatedContent",
+                "in": "path",
+                "required": true,
+                "description": "Updated content",
+                "type": "string"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Successfully updated item with key_variable"
+            }
+          }
+        }
+      }
+    },
+    "definitions": {
+      "Document": {
+        "required": [
+          "key", "content", "updatedBy","createdBy", "accessLevel"
+        ],
+        "properties": {
+          "_id": {
+            "type": "string"
+          },
+          "key": {
+            "type": "string"
+          },
+          "content": {
+            "type": "string"
+          },
+          "updatedBy": {
+            "type": "string"
+          },
+          "createdBy": {
+            "type": "string"
+          },
+          "accessLevel": {
+            "type": "string"
+          }
+        }
+      },
+      "Documents": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "$ref": "#/definitions/Document"
+        }
+      }
+    }
+  }
