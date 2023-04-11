@@ -55,6 +55,13 @@ http://localhost:3000/documents
 
 
 ## Usage
+### End point for swagger-docs
+
+```bash
+
+http://localhost:3000/api/v1/api-docs
+
+```
 
 ### Create a document
 
